@@ -1,15 +1,22 @@
 import React, { useEffect } from 'react';
 import { capitalizeFirstLetter } from '../../utils/helpers';
 
+// function Nav ({ categories = [],
+//     setCurrentCategory,
+//     currentCategory }) {
+
+
+//     useEffect(() => {
+//       document.title = capitalizeFirstLetter(currentCategory.name);
+//     }, [currentCategory]);
 function Nav(props) {
-  const { categories = [],
+  const {
+    categories = [],
     setCurrentCategory,
-    currentCategory } = props;
-
-
-    useEffect(() => {
-      document.title = capitalizeFirstLetter(currentCategory.name);
-    }, [currentCategory]);
+    contactSelected,
+    currentCategory,
+    setContactSelected,
+  } = props;
 
   return (
     <header className="flex-row px-1">
@@ -20,13 +27,22 @@ function Nav(props) {
       </h2>
       <nav>
         <ul className="flex-row">
-          <li className="mx-2"><a data-testid="about" href="#about">About me</a></li>
-          <li className="mx-2"><span>Contact</span></li>
+          <li className="mx-2"><a data-testid="about" href="#about" onClick={() => setContactSelected(false)}>About me</a></li>
+          <li className="mx-2"><span onClick={() => setContactSelected(true)}>Contact</span></li>
           {categories.map((category) => (
-            <li className={`mx-1 ${ currentCategory.name === category.name && 'navActive'
-                }`} key={category.name}>
-              <span onClick={() => { setCurrentCategory(category) }}>
-                {capitalizeFirstLetter(category.name)}
+            // <li className={`mx-1 ${currentCategory.name === category.name && 'navActive'
+            <li
+              className={`mx-1 ${currentCategory.name === category.name && !contactSelected && `navActive`
+                }`}
+              key={category.name}>
+            {/* }`} key={category.name}> */}
+              {/* <span onClick={() => { setCurrentCategory(category) }}>
+                {capitalizeFirstLetter(category.name)} */}
+              <span onClick={() => {
+                setCurrentCategory(category);
+                setContactSelected(false);
+              }}>
+
               </span>
             </li>))}
         </ul>
