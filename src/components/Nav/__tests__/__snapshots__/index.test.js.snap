@@ -43,9 +43,7 @@ exports[`Nav component matches snapshot 1`] = `
         <li
           class="mx-1 false"
         >
-          <span>
-            Portraits
-          </span>
+          <span />
         </li>
       </ul>
     </nav>
